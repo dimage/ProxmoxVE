@@ -57,7 +57,7 @@ function update_script() {
     curl -fsSL "https://github.com/pelican-dev/panel/releases/download/v${RELEASE}/panel.tar.gz" -o $(basename "https://github.com/pelican-dev/panel/releases/download/v${RELEASE}/panel.tar.gz")
     tar -xzf "panel.tar.gz"
     mv /opt/.env /opt/pelican-panel/
-    $STD composer install --no-dev --optimize-autoloader --no-interaction
+    $STD COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-interaction
     $STD php artisan p:environment:setup
     $STD php artisan view:clear
     $STD php artisan config:clear
